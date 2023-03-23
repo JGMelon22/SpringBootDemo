@@ -3,12 +3,14 @@ package com.example.demo.Controller;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Domain.Anime;
-import com.example.demo.Repository.AnimeRepository;
 import com.example.demo.Service.AnimeService;
 import com.example.demo.Util.DateUtil;
 
@@ -30,8 +32,13 @@ public class AnimeController {
     // }
 
     @GetMapping("")
-    public List<Anime> list() {
+    public ResponseEntity<List<Anime>> list() {
         log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
-        return animeService.listAll();
+        return new ResponseEntity<>(animeService.listAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Anime> getAnime(@PathVariable int id) {
+        return new ResponseEntity<>(animeService.findById(id), HttpStatus.OK);
     }
 }
