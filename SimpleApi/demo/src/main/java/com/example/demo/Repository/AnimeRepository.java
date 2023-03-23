@@ -6,5 +6,5 @@ import com.example.demo.Domain.Anime;
 
 public interface AnimeRepository {
     public List<Anime> listAll();
-    public Anime getAnime(int id);
+    public Anime getAnimeById(int id);
 }
