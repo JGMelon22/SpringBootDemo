@@ -1,10 +1,9 @@
 package com.example.demo.Repository;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.Domain.Anime;
 
-public interface AnimeRepository {
-    public List<Anime> listAll();
-    public Anime getAnimeById(int id);
+public interface AnimeRepository extends JpaRepository<Anime, Long> {
+
 }

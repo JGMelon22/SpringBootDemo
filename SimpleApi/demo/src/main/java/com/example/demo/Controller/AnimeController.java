@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Domain.Anime;
+import com.example.demo.Requests.AnimePostRequestBody;
+import com.example.demo.Requests.AnimePutRequestBody;
 import com.example.demo.Service.AnimeService;
 import com.example.demo.Util.DateUtil;
 
@@ -49,8 +51,8 @@ public class AnimeController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Anime> save(@RequestBody Anime anime) {
-        return new ResponseEntity<>(animeService.save(anime), HttpStatus.CREATED);
+    public ResponseEntity<Anime> save(@RequestBody AnimePostRequestBody animePostRequestBody) {
+        return new ResponseEntity<>(animeService.save(animePostRequestBody), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
@@ -60,8 +62,8 @@ public class AnimeController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Void> edit(@RequestBody Anime anime) {
-        animeService.edit(anime);
+    public ResponseEntity<Void> edit(@RequestBody AnimePutRequestBody animePostRequestBody) {
+        animeService.edit(animePostRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
